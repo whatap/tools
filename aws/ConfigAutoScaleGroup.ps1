@@ -38,7 +38,7 @@ try{
     }
     while($true){
         $selectedIdx= Read-Host 'Please select an auto scale group (q to quit)?'
-		if ($selectedIdx == 'q' -or $selectedIdx == 'Q'){
+		if ($selectedIdx -eq 'q' -or $selectedIdx -eq 'Q'){
 			return
 		}
         $selectedIdx= [convert]::ToInt32($selectedIdx, 10)
