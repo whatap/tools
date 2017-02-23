@@ -1,0 +1,1 @@
+typeperf -cf counters.txt -o network_performance.log.csv

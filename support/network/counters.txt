@@ -1,0 +1,5 @@
+\Network Interface(*)\Packets/sec
+\Network Interface(*)\Output Queue Length
+\Network Interface(*)\Bytes Total/sec
+\Network Interface(*)\Current Bandwidth
+\Server\Bytes Total/sec
