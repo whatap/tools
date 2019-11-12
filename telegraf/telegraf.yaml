@@ -12,6 +12,21 @@ data:
   entrypoint.sh: |-
     #!/usr/bin/env bash
 
+    export WHATAP_LICENSE=
+    export WHATAP_HOST_IP=
+    export WHATAP_PROJECT_CODE=
+    if [[ -z "$WHATAP_LICENSE" ]]; then
+      echo "WHATAP_LICENSE is required"
+      exit 1
+    fi
+    if [[ -z "$WHATAP_HOST_IP" ]]; then
+      echo "WHATAP_HOST_IP is required"
+      exit 1
+    fi
+    if [[ -z "$WHATAP_PROJECT_CODE" ]]; then
+      echo "WHATAP_PROJECT_CODE is required"
+      exit 1
+    fi
     cat >/whatap_conf/whatap.telegraf.conf <<EOL
     [global_tags]
       pod = "$POD_NAME"
@@ -29,14 +44,14 @@ data:
       omit_hostname = false
 
     [[outputs.whatap]]
-      license = "whatap license string"
-      pcode = 000
-      servers = ["tcp://whatap ip:6600"]
+      license = "$WHATAP_LICENSE"
+      pcode = $WHATAP_PROJECT_CODE 
+      servers = ["tcp://$WHATAP_HOST_IP:6600"]
 
     [[inputs.cloudwatch]]
-      region = "ap-northeast-2"
-      access_key = "AWS Access Key"
-      secret_key = "AWS Secret Key"
+      region = ""
+      access_key = ""
+      secret_key = ""
 
       period = "1m"
       delay = "1m"
@@ -59,7 +74,7 @@ spec:
     spec:
       containers:
         - name: whatap-telegraf-agent
-          image: whatap/kube_mon
+          image: image: whatap/kube_mon
           resources:
             requests:
               memory: 100Mi
@@ -77,9 +92,9 @@ spec:
               name: whatap-config-volume              
           env:
             - name: POD_IP
-            valueFrom: {fieldRef: {fieldPath: status.podIP}}
+              valueFrom: {fieldRef: {fieldPath: status.podIP}}
             - name: POD_NAME
-            valueFrom: {fieldRef: {fieldPath: metadata.name}}
+              valueFrom: {fieldRef: {fieldPath: metadata.name}}
       volumes:
         - name: start-script-volume
           configMap:
