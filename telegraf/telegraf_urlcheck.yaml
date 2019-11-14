@@ -69,4 +69,4 @@ spec:
             name: telegraf-urlcheck-start-script
         - name: whatap-config-volume
           emptyDir: {}        
-
+      serviceAccount: whatap
