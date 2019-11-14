@@ -6,7 +6,7 @@ metadata:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: telegraf-start-script
+  name: telegraf-aws-cloudwatch-start-script
   namespace: whatap-monitoring
 data:
   entrypoint.sh: |-
@@ -64,16 +64,16 @@ data:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: whatap-telegraf-agent
+  name: whatap-telegraf-aws-cloudwatch-agent
   namespace: whatap-monitoring
 spec:
   template:
     metadata:
       labels:
-        name: whatap-telegraf-agent
+        name: whatap-telegraf-aws-cloudwatch-agent
     spec:
       containers:
-        - name: whatap-telegraf-agent
+        - name: whatap-telegraf-aws-cloudwatch-agent
           image: image: whatap/kube_mon
           resources:
             requests:
@@ -99,7 +99,7 @@ spec:
         - name: start-script-volume
           configMap:
             defaultMode: 0700
-            name: telegraf-start-script
+            name: telegraf-aws-cloudwatch-start-script
         - name: whatap-config-volume
           emptyDir: {}        
 

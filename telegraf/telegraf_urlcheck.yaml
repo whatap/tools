@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: whatap-monitoring
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telegraf-urlcheck-start-script
+  namespace: whatap-monitoring
+data:
+  entrypoint.sh: |-
+    #!/usr/bin/env bash
+
+    export WHATAP_LICENSE=abcdk20dg8htr-x72u37ba8tch9m-x5kh7q8au3lhg7
+    export WHATAP_PROJECT_CODE=9999
+    export WHATAP_HOST_IP=10.0.0.1
+    export INTERVAL=60
+    export TIMEOUT=60
+    export TIMEOUT=60
+    export PROBE_HOST_PORT=80
+    export PROBE_URL_PATH=/index.html
+    export NAMESPACE=default
+    export FIELD_SELECTOR=
+    export OWNER_NAME=nginx-deployment-76bf4969df
+    export TELEGRAF_PATH=/data/agent/telegraf/telegraf
+    export TELEGRAF_CONFIG_PATH=/whatap_conf/whatap.telegraf.conf
+    
+    /data/agent/telegraf/telegraf_url_check 
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: whatap-telegraf-urlcheck-agent
+  namespace: whatap-monitoring
+spec:
+  template:
+    metadata:
+      labels:
+        name: whatap-telegraf-urlcheck-agent
+    spec:
+      containers:
+        - name: whatap-telegraf-urlcheck-agent
+          image: whatap/kube_mon
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 50m
+            limits:
+              memory: 350Mi
+              cpu: 200m
+          command: ['/bin/entrypoint.sh']
+          volumeMounts:
+            - name: start-script-volume
+              mountPath: /bin/entrypoint.sh
+              readOnly: true
+              subPath: entrypoint.sh
+            - mountPath: /whatap_conf
+              name: whatap-config-volume              
+          env:
+            - name: POD_IP
+              valueFrom: {fieldRef: {fieldPath: status.podIP}}
+            - name: POD_NAME
+              valueFrom: {fieldRef: {fieldPath: metadata.name}}
+      volumes:
+        - name: start-script-volume
+          configMap:
+            defaultMode: 0700
+            name: telegraf-urlcheck-start-script
+        - name: whatap-config-volume
+          emptyDir: {}        
+
