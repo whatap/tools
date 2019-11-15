@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import simple.demo.rest.service.SimpleCacheService;
+import simple.demo.service.SimpleCacheService;
 import simple.demo.service.SimpleQueueService;
 
 
