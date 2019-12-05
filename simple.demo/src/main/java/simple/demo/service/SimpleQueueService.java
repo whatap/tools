@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -19,7 +20,7 @@ public class SimpleQueueService {
 	public String pushMessage(String message) throws IOException, TimeoutException {
 		
 		
-	    channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+	    channel.basicPublish("", QUEUE_NAME, new BasicProperties.Builder().build(), message.getBytes());
 	    
 	    return " [x] Sent '" + message + "'";
 		
@@ -43,7 +44,7 @@ public class SimpleQueueService {
 	Channel channel ;
 	private void init() throws IOException, TimeoutException {
 		factory = new ConnectionFactory();
-	    factory.setHost("192.168.1.37");
+	    factory.setHost("192.168.1.92");
 	    factory.setUsername("rabbitmq");
 	    factory.setPassword("rabbitmq");
 	    factory.setVirtualHost("/");
@@ -54,19 +55,4 @@ public class SimpleQueueService {
 	    
 		
 	}
-
-	
-
-	public void consume() throws IOException {
-		Consumer consumer = new DefaultConsumer(channel) {
-	      @Override
-	      public void handleDelivery(String consumerTag, Envelope envelope,
-	          AMQP.BasicProperties properties, byte[] body) throws IOException {
-	        String message = new String(body, "UTF-8");
-	        System.out.println(" [x] Received '" + message + "'");
-	      }
-	    };
-	    channel.basicConsume(QUEUE_NAME, true, consumer);
-	}
-
 }
