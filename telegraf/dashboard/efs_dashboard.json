@@ -103,7 +103,14 @@
         "chartType": "series",
         "period": "1",
         "date": "2019-12-18T04:53:03.859Z",
-        "uid": "464b3430215211ea8c7ee7eff5104835"
+        "uid": "464b3430215211ea8c7ee7eff5104835",
+        "options": {
+              "title": "Burst credit balance - fs-995330f8",
+              "y_unit": [
+                "tib",
+                "data"
+              ]
+        }
       },
       "layout": {
         "w": 13,
@@ -145,7 +152,14 @@
         "chartType": "series",
         "period": "live",
         "date": "2019-12-18T04:55:11.034Z",
-        "uid": "921891a0215211ea8c7ee7eff5104835"
+        "uid": "921891a0215211ea8c7ee7eff5104835",
+        "options": {
+              "title": "Data write io bytes - fs-995330f8",
+              "y_unit": [
+                "gib",
+                "data"
+              ]
+        }
       },
       "layout": {
         "w": 13,
@@ -187,7 +201,14 @@
         "chartType": "series",
         "period": "live",
         "date": "2019-12-18T04:55:18.264Z",
-        "uid": "9667c780215211ea8c7ee7eff5104835"
+        "uid": "9667c780215211ea8c7ee7eff5104835",
+        "options": {
+              "title": "Metadata io bytes - fs-995330f8",
+              "y_unit": [
+                "gib",
+                "data"
+              ]
+        }
       },
       "layout": {
         "w": 9,
@@ -229,7 +250,14 @@
         "chartType": "series",
         "period": "live",
         "date": "2019-12-18T04:55:24.745Z",
-        "uid": "9a44b390215211ea8c7ee7eff5104835"
+        "uid": "9a44b390215211ea8c7ee7eff5104835",
+        "options": {
+              "title": "Permitted throughput - fs-995330f8",
+              "y_unit": [
+                "gib",
+                "data"
+              ]
+        }
       },
       "layout": {
         "w": 9,
@@ -271,7 +299,14 @@
         "chartType": "series",
         "period": "live",
         "date": "2019-12-18T04:55:33.503Z",
-        "uid": "9f7d10f0215211ea8c7ee7eff5104835"
+        "uid": "9f7d10f0215211ea8c7ee7eff5104835",
+        "options": {
+              "title": "Total io bytes - fs-995330f8",
+              "y_unit": [
+                "gib",
+                "data"
+              ]
+        }
       },
       "layout": {
         "w": 9,
