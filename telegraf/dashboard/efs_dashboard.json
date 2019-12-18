@@ -1,0 +1,289 @@
+{
+  "name": "EFS",
+  "description": "EFS",
+  "dataKey": "D_EbHvre46uU2o3qnQfj6QtpYs",
+  "order": 1,
+  "version": 3,
+  "created": 1576635414000,
+  "updated": 1576644892000,
+  "isSelected": false,
+  "panels": {
+    "7de67b80213d11ea99aa1d217833bc5e": {
+      "data": {
+        "datasets": [],
+        "selectedChartType": "seriestrend",
+        "selectedProductType": "APM",
+        "title": "Client Connections - fs-995330f8",
+        "chart": "series",
+        "visible": true,
+        "time": {
+          "type": "live",
+          "duration": 3600000
+        },
+        "list": [
+          {
+            "id": "c1d3ab54-2144-11ea-978f-2e728ce88125",
+            "timeMerge": "sum",
+            "objectMerge": "sum",
+            "pcode": 276,
+            "category": "telegraf_cloudwatch_aws_efs",
+            "tags": {
+              "file_system_id": "fs-995330f8"
+            },
+            "fields": [
+              "client_connections_sum"
+            ]
+          }
+        ],
+        "loading": false,
+        "error": false,
+        "period": "1",
+        "options": {
+          "title": "EFS Client Connections - fs-995330f8",
+          "x_axisLine": true,
+          "x_plotLine": true,
+          "x_tick": true,
+          "borderWidth": true,
+          "borderColor": true,
+          "y_axisLine": false,
+          "y_plotLine": true,
+          "y_tick": true,
+          "inner": true,
+          "y_unit": [
+            "default",
+            "default"
+          ],
+          "selectAll": true
+        },
+        "chartType": "series",
+        "date": "2019-11-07T06:35:50.392Z",
+        "uid": "7de67b80213d11ea99aa1d217833bc5e",
+        "dataNormalize": "each-5min",
+        "normalize": 300000
+      },
+      "layout": {
+        "w": 14,
+        "h": 13,
+        "x": 0,
+        "y": 0,
+        "i": "7de67b80213d11ea99aa1d217833bc5e",
+        "minW": 4,
+        "minH": 2,
+        "moved": false,
+        "static": false
+      }
+    },
+    "464b3430215211ea8c7ee7eff5104835": {
+      "data": {
+        "datasets": [],
+        "selectedChartType": "seriestrend",
+        "selectedProductType": "APM",
+        "title": "Burst credit balance - fs-995330f8",
+        "chart": "series",
+        "visible": true,
+        "time": {
+          "type": "live",
+          "duration": 3600000
+        },
+        "list": [
+          {
+            "id": "dc09bc8c-2150-11ea-978f-2e728ce88125",
+            "timeMerge": "sum",
+            "objectMerge": "sum",
+            "pcode": 276,
+            "category": "telegraf_cloudwatch_aws_efs",
+            "tags": {
+              "file_system_id": "fs-995330f8"
+            },
+            "fields": [
+              "burst_credit_balance_sum"
+            ]
+          }
+        ],
+        "chartType": "series",
+        "period": "1",
+        "date": "2019-12-18T04:53:03.859Z",
+        "uid": "464b3430215211ea8c7ee7eff5104835"
+      },
+      "layout": {
+        "w": 13,
+        "h": 6,
+        "x": 14,
+        "y": 0,
+        "i": "464b3430215211ea8c7ee7eff5104835",
+        "minW": 4,
+        "minH": 2,
+        "moved": false,
+        "static": false
+      }
+    },
+    "921891a0215211ea8c7ee7eff5104835": {
+      "data": {
+        "datasets": [],
+        "selectedChartType": "series",
+        "selectedProductType": "APM",
+        "title": "Data write io bytes - fs-995330f8",
+        "chart": "series",
+        "visible": true,
+        "time": {
+          "type": "live",
+          "duration": 3600000
+        },
+        "list": [{
+            "id": "dc09bf5c-2150-11ea-978f-2e728ce88125",
+            "timeMerge": "sum",
+            "objectMerge": "sum",
+            "pcode": 276,
+            "category": "telegraf_cloudwatch_aws_efs",
+            "tags": {
+              "file_system_id": "fs-995330f8"
+            },
+            "fields": [
+              "data_write_io_bytes_sum"
+            ]
+          }],
+        "chartType": "series",
+        "period": "live",
+        "date": "2019-12-18T04:55:11.034Z",
+        "uid": "921891a0215211ea8c7ee7eff5104835"
+      },
+      "layout": {
+        "w": 13,
+        "h": 7,
+        "x": 14,
+        "y": 6,
+        "i": "921891a0215211ea8c7ee7eff5104835",
+        "minW": 4,
+        "minH": 2,
+        "moved": false,
+        "static": false
+      }
+    },
+    "9667c780215211ea8c7ee7eff5104835": {
+      "data": {
+        "datasets": [],
+        "selectedChartType": "series",
+        "selectedProductType": "APM",
+        "title": "Metadata io bytes - fs-995330f8",
+        "chart": "series",
+        "visible": true,
+        "time": {
+          "type": "live",
+          "duration": 3600000
+        },
+        "list": [{
+            "id": "dc09c0c4-2150-11ea-978f-2e728ce88125",
+            "timeMerge": "sum",
+            "objectMerge": "sum",
+            "pcode": 276,
+            "category": "telegraf_cloudwatch_aws_efs",
+            "tags": {
+              "file_system_id": "fs-995330f8"
+            },
+            "fields": [
+              "metadata_io_bytes_sum"
+            ]
+          }],
+        "chartType": "series",
+        "period": "live",
+        "date": "2019-12-18T04:55:18.264Z",
+        "uid": "9667c780215211ea8c7ee7eff5104835"
+      },
+      "layout": {
+        "w": 9,
+        "h": 9,
+        "x": 0,
+        "y": 13,
+        "i": "9667c780215211ea8c7ee7eff5104835",
+        "minW": 4,
+        "minH": 2,
+        "moved": false,
+        "static": false
+      }
+    },
+    "9a44b390215211ea8c7ee7eff5104835": {
+      "data": {
+        "datasets": [],
+        "selectedChartType": "series",
+        "selectedProductType": "APM",
+        "title": "Permitted throughput - fs-995330f8",
+        "chart": "series",
+        "visible": true,
+        "time": {
+          "type": "live",
+          "duration": 3600000
+        },
+        "list": [{
+            "id": "dc09c48e-2150-11ea-978f-2e728ce88125",
+            "timeMerge": "sum",
+            "objectMerge": "sum",
+            "pcode": 276,
+            "category": "telegraf_cloudwatch_aws_efs",
+            "tags": {
+              "file_system_id": "fs-995330f8"
+            },
+            "fields": [
+              "permitted_throughput_sum"
+            ]
+          }],
+        "chartType": "series",
+        "period": "live",
+        "date": "2019-12-18T04:55:24.745Z",
+        "uid": "9a44b390215211ea8c7ee7eff5104835"
+      },
+      "layout": {
+        "w": 9,
+        "h": 9,
+        "x": 9,
+        "y": 13,
+        "i": "9a44b390215211ea8c7ee7eff5104835",
+        "minW": 4,
+        "minH": 2,
+        "moved": false,
+        "static": false
+      }
+    },
+    "9f7d10f0215211ea8c7ee7eff5104835": {
+      "data": {
+        "datasets": [],
+        "selectedChartType": "series",
+        "selectedProductType": "APM",
+        "title": "Total io bytes - fs-995330f8",
+        "chart": "series",
+        "visible": true,
+        "time": {
+          "type": "live",
+          "duration": 3600000
+        },
+        "list": [{
+            "id": "dc09c5ce-2150-11ea-978f-2e728ce88125",
+            "timeMerge": "sum",
+            "objectMerge": "sum",
+            "pcode": 276,
+            "category": "telegraf_cloudwatch_aws_efs",
+            "tags": {
+              "file_system_id": "fs-995330f8"
+            },
+            "fields": [
+              "total_io_bytes_sum"
+            ]
+          }],
+        "chartType": "series",
+        "period": "live",
+        "date": "2019-12-18T04:55:33.503Z",
+        "uid": "9f7d10f0215211ea8c7ee7eff5104835"
+      },
+      "layout": {
+        "w": 9,
+        "h": 9,
+        "x": 18,
+        "y": 13,
+        "i": "9f7d10f0215211ea8c7ee7eff5104835",
+        "minW": 4,
+        "minH": 2,
+        "moved": false,
+        "static": false
+      }
+    }
+  }
+}
