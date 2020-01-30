@@ -1,0 +1,119 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: whatap-monitoring
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dbx-start-script
+  namespace: whatap-monitoring
+data:
+  entrypoint.sh: |-
+    #!/usr/bin/env bash
+    export WHATAP_LICENSE=
+    export WHATAP_HOST_IP=
+    export DB_IP=
+    export DB_PORT=
+    export DB_USER=
+    export DB_PASSWORD=
+    export DB_INSTANCE=
+    export AWS_REGION=
+    export AWS_ACCESS_KEY=
+    export AWS_SECRET_KEY=
+
+
+    if [[ -z "$WHATAP_LICENSE" ]]; then
+      echo "WHATAP_LICENSE is required"
+      exit 1
+    fi
+    if [[ -z "$WHATAP_HOST_IP" ]]; then
+      echo "WHATAP_HOST_IP is required"
+      exit 1
+    fi
+    if [[ -z "$DB_IP" ]]; then
+      echo "DB_IP is required"
+      exit 1
+    fi
+    if [[ -z "$DB_PORT" ]]; then
+      echo "DB_PORT is required"
+      exit 1
+    fi
+    if [[ -z "$DB_USER" ]]; then
+      echo "DB_USER is required"
+      exit 1
+    fi
+    if [[ -z "$DB_PASSWORD" ]]; then
+      echo "DB_PASSWORD is required"
+      exit 1
+    fi
+    if [[ -z "$DB_INSTANCE" ]]; then
+      echo "DB_INSTANCE is required"
+      exit 1
+    fi
+    if [[ -z "$AWS_REGION" ]]; then
+      echo "AWS_REGION is required"
+      exit 1
+    fi
+    if [[ -z "$AWS_ACCESS_KEY" ]]; then
+      echo "AWS_ACCESS_KEY is required"
+      exit 1
+    fi
+    if [[ -z "$AWS_SECRET_KEY" ]]; then
+      echo "AWS_SECRET_KEY is required"
+      exit 1
+    fi
+    cat >/data/agent/dbx/whatap/whatap.conf <<EOL
+    
+    license=$WHATAP_LICENSE
+    whatap.server.host=$WHATAP_HOST_IP
+    dbms=postgresql
+    db=postgres
+    db_ip=$DB_IP
+    db_port=$DB_PORT 
+
+    aws_region=$AWS_REGION
+    aws_access_key=$AWS_ACCESS_KEY
+    aws_secret_key=$AWS_SECRET_KEY
+
+    cloud_watch=on
+    cloud_watch_instance=$DB_INSTANCE
+    cloud_watch_interval=60
+    cloud_watch_metrics=CPUUtilization,FreeableMemory,FreeStorageSpace,NetworkTransmitThroughput,NetworkReceiveThroughput
+    EOL
+    cd /data/agent/dbx/whatap
+    sh uid.sh $DB_USER $DB_PASSWORD
+    sh start.sh
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: whatap-dbx-agent
+  namespace: whatap-monitoring
+spec:
+  template:
+    metadata:
+      labels:
+        name: whatap-dbx-agent
+    spec:
+      containers:
+        - name: whatap-dbx-agent
+          image: whatap/kube_mon:1.0.55
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 50m
+            limits:
+              memory: 350Mi
+              cpu: 200m
+          command: ['/bin/entrypoint.sh']
+          volumeMounts:
+            - name: start-script-volume
+              mountPath: /bin/entrypoint.sh
+              readOnly: true
+              subPath: entrypoint.sh
+      volumes:
+        - name: start-script-volume
+          configMap:
+            defaultMode: 0700
+            name: dbx-start-script
