@@ -22,6 +22,7 @@ export WHATAP_HOME=/whatap_conf
 #설정파일을 생성합니다.
 whatap-setting-config --host 수집서버IP --license 프로젝트라이선스 --app_name 업무명 --app_process_name HTTP서버
 
+
 #와탭 에이전트가 사용자의 어플리케이션을 시작하게 합니다.    
 whatap-start-agent gunicorn -b 0.0.0.0:8000 --workers=3 django1.wsgi
 ```
@@ -49,7 +50,7 @@ spec:
               valueFrom: {fieldRef: {fieldPath: spec.nodeName}}
             - name: POD_NAME
               valueFrom: {fieldRef: {fieldPath: metadata.name}}
-            - name: REDIS_HOST
+            
           volumeMounts:
             ...
             - name: whatap-config-volume
