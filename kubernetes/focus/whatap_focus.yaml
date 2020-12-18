@@ -31,6 +31,7 @@ data:
     WHATAP_LICENSE=
     WHATAP_PCODE=
     WHATAP_HOST=
+    WHATAP_NAMESPACE=
     TARGET_POD=
     TARGET_CONTAINER=
 
@@ -38,7 +39,7 @@ data:
      -pcode $WHATAP_PCODE -server.host $WHATAP_HOST \
      -pod $TARGET_POD \
      -container $TARGET_CONTAINER \
-     -namespace kube-system \
+     -namespace $TARGET_NAMESPACE \
      -json.decode \
      -category $WHATAP_CATEGORY
 ---
