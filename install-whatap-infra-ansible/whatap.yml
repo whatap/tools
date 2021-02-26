@@ -15,3 +15,6 @@
   - name: Add Repository SUSE
     include_tasks: tasks/Suse.yml
     when: ansible_distribution == 'SLES'
+  - name: Add Repository Windows
+    include_tasks: tasks/Windows.yml
+    when: ansible_distribution == 'Windows'
