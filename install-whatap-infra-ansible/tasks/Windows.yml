@@ -1,0 +1,7 @@
+- name: Install Whatap Infra
+  ansible.windows.win_package:
+    path: http://repo.whatap.io/windows/whatap_infra.exe
+    product_id: 'WhatapInfra_is1'
+    arguments:
+    - /SERIAL {{whatap_license}}
+    - /PROXYIP {{whatap_server_host}}
