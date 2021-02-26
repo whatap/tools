@@ -1,0 +1,24 @@
+---
+- name: Add key
+  apt_key:
+    url: http://repo.whatap.io/debian/release.gpg
+    state: present
+- name: Add repo
+  apt:
+    deb: http://repo.whatap.io/debian/whatap-repo_1.0_all.deb
+    update_cache: yes
+- name: Install whatap-infra
+  apt:
+    name: whatap-infra
+    state: present
+    update_cache: yes
+- name: Start whatap-infra monitorning
+  shell: "{{ item }}"
+  with_items:
+    - 'echo license={{license}} | sudo tee /usr/whatap/infra/conf/whatap.conf'
+    - 'echo "whatap.server.host=13.124.11.223/13.209.172.35" |sudo tee -a /usr/whatap/infra/conf/whatap.conf'
+    - 'echo "createdtime=`date +%s%N`" | sudo tee -a /usr/whatap/infra/conf/whatap.conf'
+- name: service start
+  service:
+    name: whatap-infra
+    state: restarted

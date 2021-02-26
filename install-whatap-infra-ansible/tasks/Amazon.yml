@@ -1,0 +1,26 @@
+---
+- name: Add key
+  rpm_key:
+    key: http://repo.whatap.io/centos/release.gpg
+    state: present
+- name: Add repository 
+  yum_repository:
+    name: whatap packages for enterprise linux
+    description: whatap
+    baseurl: http://repo.whatap.io/centos/latest/$basearch
+    gpgcheck: no
+- name: Install whatap-infra
+  yum:
+    name: whatap-infra
+    state: present
+    update_cache: yes
+- name: Start whatap-infra monitorning
+  shell: "{{ item }}"
+  with_items:
+    - 'echo license={{license}} | sudo tee /usr/whatap/infra/conf/whatap.conf'
+    - 'echo "whatap.server.host=13.124.11.223/13.209.172.35" |sudo tee -a /usr/whatap/infra/conf/whatap.conf'
+    - 'echo "createdtime=`date +%s%N`" | sudo tee -a /usr/whatap/infra/conf/whatap.conf'
+- name: service start
+  service:
+    name: whatap-infra
+    state: restarted

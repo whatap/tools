@@ -1,0 +1,26 @@
+---
+- name: Add key
+  rpm_key:
+    key: http://repo.whatap.io/suse/release.gpg
+    state: present
+- name: Add repository
+  shell: "{{ item }}"
+  with_items:
+    - echo "[whatap]" | sudo tee /etc/zypp/repos.d/whatap.repo > /dev/null
+    - echo "name=whatap packages for enterprise linux" | sudo tee -a /etc/zypp/repos.d/whatap.repo > /dev/null
+    - echo "baseurl=http://repo.whatap.io/suse/12/x86_64" | sudo tee -a /etc/zypp/repos.d/whatap.repo > /dev/null
+    - echo "enabled=1" | sudo tee -a /etc/zypp/repos.d/whatap.repo > /dev/null
+    - echo "gpgcheck=1" | sudo tee -a /etc/zypp/repos.d/whatap.repo > /dev/null
+- name: Install whatap-infra
+  zypper:
+    name: whatap-infra
+    state: present
+    update_cache: yes
+- name: Start whatap-infra monitorning
+  shell: "{{ item }}"
+  with_items:
+    - 'echo license={{license}} | sudo tee /usr/whatap/infra/conf/whatap.conf'
+    - 'echo "whatap.server.host=13.124.11.223/13.209.172.35" |sudo tee -a /usr/whatap/infra/conf/whatap.conf'
+    - 'echo "createdtime=`date +%s%N`" | sudo tee -a /usr/whatap/infra/conf/whatap.conf'
+- name: service start
+  shell: "/etc/init.d/whatap-infra restart"

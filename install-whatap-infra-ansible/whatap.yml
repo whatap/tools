@@ -1,0 +1,17 @@
+---
+- name: Install Whatap Server Monitorning
+  hosts: all
+  become: true
+  tasks:
+  - name: Add Repository Ubuntu
+    include_tasks: tasks/Ubuntu.yml
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  - name: Add Repository Amazon
+    include_tasks: tasks/Amazon.yml
+    when: ansible_distribution == 'Amazon'
+  - name: Add Repository CentOS
+    include_tasks: tasks/CentOS.yml
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version > "6"
+  - name: Add Repository SUSE
+    include_tasks: tasks/Suse.yml
+    when: ansible_distribution == 'SLES'
