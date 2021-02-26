@@ -17,8 +17,8 @@
 - name: Start whatap-infra monitorning
   shell: "{{ item }}"
   with_items:
-    - 'echo license={{license}} | sudo tee /usr/whatap/infra/conf/whatap.conf'
-    - 'echo "whatap.server.host=13.124.11.223/13.209.172.35" |sudo tee -a /usr/whatap/infra/conf/whatap.conf'
+    - 'echo license={{whatap_license}} | sudo tee /usr/whatap/infra/conf/whatap.conf'
+    - 'echo "whatap.server.host={{whatap_server_host}}" |sudo tee -a /usr/whatap/infra/conf/whatap.conf'
     - 'echo "createdtime=`date +%s%N`" | sudo tee -a /usr/whatap/infra/conf/whatap.conf'
 - name: service start
   service:
