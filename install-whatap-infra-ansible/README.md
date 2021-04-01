@@ -9,7 +9,7 @@
 ## 변수를 정의해 실행합니다. 
 playbook에서 사용할 hostfile을 지정하고 변수로 whatap_license,whatap_server_host 지정해 playbook을 실행합니다.
 ```
-  ansible-playbook -i {host_file_name} --e "whatap_license={whatap_license} whatap_server_host={whatap_server_host}" --e "whatap.yml
+  ansible-playbook -i {host_file_name} --e "whatap_license={whatap_license} whatap_server_host={whatap_server_host}" whatap.yml
   ex) ansible-playbook -i whatap_hosts --e "whatap_license=xxxxxxxxxxxxxxxxxxxxxxxxxx whatap_server_host=13.124.11.223/13.209.172.35" whatap.yml
 ```
 
