@@ -6,19 +6,21 @@
 - name: Add repository
   yum:
     name: http://repo.whatap.io/centos/5/noarch/whatap-repo-1.0-1.noarch.rpm
-    state: present
+    state: latest
 - name: Install whatap-infra
   yum:
     name: whatap-infra
-    state: present
+    state: latest
     update_cache: yes
+
 - name: Start whatap-infra monitorning
   shell: "{{ item }}"
   with_items:
     - 'echo license={{whatap_license}} | sudo tee /usr/whatap/infra/conf/whatap.conf'
     - 'echo "whatap.server.host={{whatap_server_host}}" |sudo tee -a /usr/whatap/infra/conf/whatap.conf'
     - 'echo "createdtime=`date +%s%N`" | sudo tee -a /usr/whatap/infra/conf/whatap.conf'
-- name: service start
+  when: not updateonly
+- name: service restart
   service:
     name: whatap-infra
     state: restarted
