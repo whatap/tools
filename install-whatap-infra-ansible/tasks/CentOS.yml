@@ -6,11 +6,11 @@
 - name: Add repository
   yum:
     name: http://repo.whatap.io/centos/5/noarch/whatap-repo-1.0-1.noarch.rpm
-    state: present
+    state: latest
 - name: Install whatap-infra
   yum:
     name: whatap-infra
-    state: present
+    state: latest
     update_cache: yes
 - name: Start whatap-infra monitorning
   shell: "{{ item }}"
