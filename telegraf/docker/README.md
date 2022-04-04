@@ -6,6 +6,9 @@ Telegraf 용 와탭 Output Plugin을 이용하여 빠르게 SNMP 모니터링을
 ## Docker
 
 snmptranslate, snmptable명령 및 기본 MIB를 Docker image로 빌드하여 원라인으로 설치할 수 있습니다.
+### Docker 설치
+curl https://get.docker.com | sudo sh -
+
 ### 이미지 빌드
 docker build -t 태그 .
 ### 실행
