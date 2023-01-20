@@ -1,0 +1,5 @@
+uvicorn==0.20.0
+fastapi==0.88.0
+sqlalchemy
+names
+requests
