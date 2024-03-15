@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: whatap-log-config
+data:
+  accesslog.conf: |-
+    [[inputs.logsink]]
+      category = "nginxlog"
+      stats_enabled = true 
+      stats_category = "logsink_stats"
+      excludeNames = [ ".gz",".zip" ] 
+      [[inputs.logsink.file]]
+        path = "/var/log/nginx/access.log" 
+        disabled = false
+        encoding = "utf-8"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      volumes:
+      - name: shared-logs
+        emptyDir: {}
+      - name: whatap-log-config
+        configMap:
+          defaultMode: 0700
+          name: whatap-log-config
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: shared-logs
+          mountPath: /var/log/nginx
+
+      - name: whatap-log-collector
+        image: whatap/server_mon:amd64
+        imagePullPolicy: Always
+        env:
+        - name: WHATAP_ACCESSKEY
+          value: "와탭 프로젝트 엑세스 키"
+        - name: WHATAP_SERVER_HOST
+          value: "와탭 수집서버 아이피"
+
+        volumeMounts:
+        - name: shared-logs
+          mountPath: /var/log/nginx
+        - name: whatap-log-config
+          mountPath: /usr/whatap/infra/extension/accesslog.conf
+          readOnly: true
+          subPath: accesslog.conf
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
