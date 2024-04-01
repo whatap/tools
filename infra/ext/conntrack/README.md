@@ -51,7 +51,7 @@ Use the whatap_infrad program to initialize the custom script. Replace {non-root
 ```bash
 cd /usr/whatap/infra
 sudo WHATAP_HOME=$PWD/conf ./whatap_infrad --user {non-root user} init-script
-``
+```
 4. Restart the Whatap Agent
 After registration, restart the Whatap agent to apply the changes.
 
