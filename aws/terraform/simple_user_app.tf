@@ -67,7 +67,7 @@ resource "aws_ecs_service" "simpleapp" {
   cluster         = "${var.clusterarn}"
   launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.simpleapp.arn
-  desired_count   = 3
+  desired_count   = 1
 
   network_configuration {
     security_groups = ["${var.sg-group}"]
@@ -119,11 +119,11 @@ resource "aws_iam_role_policy" "simpelapp_policy" {
 data "aws_iam_policy_document" "simpelapp_policy" {
   statement {
     actions = [
-      "ecs:DescribeClusters",
+      "ecs:DescribeClusters","ecs:DescribeTasks"
     ]
 
     resources = [
-      "${var.clusterarn}",
+      "*"
     ]
   }
 }
