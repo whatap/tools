@@ -1,0 +1,8 @@
+[
+    {
+      "category": "authlog",
+      "enabled": true,
+      "filter": "",
+      "pattern": "%{SYSLOGTIMESTAMP:local_timestamp}\\s+%{HOSTNAME:hostname}\\s+%{WORD:process}:\\s+%{USERNAME:user}\\s*:\\s*TTY=\\s*%{NOTSPACE:tty}\\s*;\\s*PWD=\\s*%{NOTSPACE:pwd}\\s*;\\s*USER=\\s*%{USERNAME:target_user}\\s*;\\s*COMMAND=\\s*%{GREEDYDATA:command}"
+    }
+]
