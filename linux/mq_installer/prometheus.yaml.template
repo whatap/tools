@@ -1,0 +1,47 @@
+global:
+  useObjectStatus: true
+  useResetQStats: false
+  usePublications: true
+  logLevel: INFO
+  metaprefix: ""
+  pollInterval: 30s
+  rediscoverInterval: 1h
+  tzOffset: 0h
+
+connection:
+    queueManager: {{QM}}
+    ccdtUrl:
+    connName: {{MQ_HOST}}({{MQ_PORT}})
+    channel: {{CHANNEL}}
+    clientConnection: false
+    user: {{USER}}
+    password: "{{PASSWORD}}"
+
+    replyQueue: SYSTEM.DEFAULT.MODEL.QUEUE
+    waitInterval: 3
+
+objects:
+    queues:
+    - "*"
+    - "!SYSTEM.*"
+    - "!AMQ.*"
+    channels:
+    - "*"
+    topics:
+    subscriptions:
+filters:
+    hideSvrConnJobname: false
+    showInactiveChannels: false
+    hideAMQPClientId: false
+    queueSubscriptionSelector:
+    - PUT
+    - GET
+    - GENERAL
+
+prometheus:
+  port: {{PROMETHEUS_PORT}}
+  metricsPath: "/metrics"
+  namespace: ibmmq
+  keepRunning: true
+  reconnectInterval: 5s
+

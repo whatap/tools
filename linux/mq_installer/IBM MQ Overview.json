@@ -1,0 +1,2601 @@
+{
+  "name": "IBM MQ Overview",
+  "widgets": [
+    {
+      "id": "82yHfMArM",
+      "title": "PUT",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "i": "82yHfMArM",
+        "w": 11,
+        "h": 4,
+        "x": 11,
+        "y": 1,
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_queue_mqget_count",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr,큐",
+          "mql": "INJECT timepast\nHEADER { \"gauge$\":\"#\" }\nOIDSET { oid:$oid, okind:$okind, onode:$onode }\nCATEGORY {\"telegraf_ibmmq_queue_mqput_mqput1_count\":6h, \"telegraf_ibmmq_queue_mqput_mqput1_count{m5}\":3d, \"telegraf_ibmmq_queue_mqput_mqput1_count{h1}\":unlimit } \nTAGLOAD\nINJECT default\nUPDATE { key: ['gauge'], value: $TIME_MERGE_PLACE }\nSELECT [ 'pcode', 'time', 'oid', 'gauge', 'qmgr', 'queue' ]\nFILTER { key: \"gauge\", exist: true }\nFILTER { key: \"qmgr\", exist: true }\nFILTER { key: \"queue\", exist: true }\n\nCREATE { key:_id_, expr: \"pcode+'_'+qmgr+'_'+queue\" }\nCREATE { key:_name_, expr: \"qmgr+' / '+queue\" }\nGROUP { timeunit: 5s, merge: ['gauge'], pk: _id_, last: _name_ }\nUPDATE { key: ['gauge'], value: $OBJECT_MERGE_PLACE }"
+        },
+        {
+          "name": "description",
+          "tags": [
+            {
+              "key": "description",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "queue",
+          "tags": [
+            {
+              "key": "queue",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "usage",
+          "tags": [
+            {
+              "key": "usage",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "Ehb7xPl4K",
+      "title": "DEPTH",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "i": "Ehb7xPl4K",
+        "w": 11,
+        "h": 4,
+        "x": 22,
+        "y": 1,
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_queue_mqget_count",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr,큐",
+          "mql": "INJECT timepast\nHEADER { \"gauge$\":\"#\" }\nOIDSET { oid:$oid, okind:$okind, onode:$onode }\nCATEGORY {\"telegraf_ibmmq_queue_depth\":6h, \"telegraf_ibmmq_queue_depth{m5}\":3d, \"telegraf_ibmmq_queue_depth{h1}\":unlimit } \nTAGLOAD\nINJECT default\nUPDATE { key: ['gauge'], value: $TIME_MERGE_PLACE }\nSELECT [ 'pcode', 'time', 'oid', 'gauge', 'qmgr', 'queue' ]\nFILTER { key: \"gauge\", exist: true }\nFILTER { key: \"qmgr\", exist: true }\nFILTER { key: \"queue\", exist: true }\n\nCREATE { key:_id_, expr: \"pcode+'_'+qmgr+'_'+queue\" }\nCREATE { key:_name_, expr: \"qmgr+' / '+queue\" }\nGROUP { timeunit: 5s, merge: ['gauge'], pk: _id_, last: _name_ }\nUPDATE { key: ['gauge'], value: $OBJECT_MERGE_PLACE }"
+        },
+        {
+          "name": "description",
+          "tags": [
+            {
+              "key": "description",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "queue",
+          "tags": [
+            {
+              "key": "queue",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "usage",
+          "tags": [
+            {
+              "key": "usage",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "R9M7K5BuuG",
+      "title": "OLDEST MSG AGE",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "i": "R9M7K5BuuG",
+        "w": 11,
+        "h": 4,
+        "x": 33,
+        "y": 1,
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_queue_mqget_count",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr,큐",
+          "mql": "INJECT timepast\nHEADER { \"gauge$\":\"#\" }\nOIDSET { oid:$oid, okind:$okind, onode:$onode }\nCATEGORY {\"telegraf_ibmmq_queue_oldest_message_age\":6h, \"telegraf_ibmmq_queue_oldest_message_age{m5}\":3d, \"telegraf_ibmmq_queue_oldest_message_age{h1}\":unlimit } \nTAGLOAD\nINJECT default\nUPDATE { key: ['gauge'], value: $TIME_MERGE_PLACE }\nSELECT [ 'pcode', 'time', 'oid', 'gauge', 'qmgr', 'queue' ]\nFILTER { key: \"gauge\", exist: true }\nFILTER { key: \"qmgr\", exist: true }\nFILTER { key: \"queue\", exist: true }\n\nCREATE { key:_id_, expr: \"pcode+'_'+qmgr+'_'+queue\" }\nCREATE { key:_name_, expr: \"qmgr+' / '+queue\" }\nGROUP { timeunit: 5s, merge: ['gauge'], pk: _id_, last: _name_ }\nUPDATE { key: ['gauge'], value: $OBJECT_MERGE_PLACE }"
+        },
+        {
+          "name": "description",
+          "tags": [
+            {
+              "key": "description",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "queue",
+          "tags": [
+            {
+              "key": "queue",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "usage",
+          "tags": [
+            {
+              "key": "usage",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "Zu1BNH2itp",
+      "title": "GET",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "i": "Zu1BNH2itp",
+        "w": 11,
+        "h": 4,
+        "x": 0,
+        "y": 1,
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_queue_mqget_count",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr,큐",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            },
+            {
+              "key": "queue",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "description",
+          "tags": [
+            {
+              "key": "description",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "queue",
+          "tags": [
+            {
+              "key": "queue",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "usage",
+          "tags": [
+            {
+              "key": "usage",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "8XKqEJBOez",
+      "title": "Publications",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 11,
+        "x": 0,
+        "y": 6,
+        "i": "8XKqEJBOez",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_qmgr_published_to_subscribers_message_count",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "icon": "note",
+      "supports": [],
+      "title": "리치 텍스트",
+      "dirname": "v1/99.etc",
+      "widgetType": "RICH_TEXT",
+      "requestApi": "NONE",
+      "_key_": "v1/99.etc/rich_text",
+      "id": "jcTN6j4SS",
+      "layout": {
+        "h": 1,
+        "w": 44,
+        "x": 0,
+        "y": 0,
+        "i": "jcTN6j4SS",
+        "moved": false,
+        "static": false
+      },
+      "option": {
+        "markdown": "# Queue Activity"
+      }
+    },
+    {
+      "icon": "note",
+      "supports": [],
+      "title": "리치 텍스트",
+      "dirname": "v1/99.etc",
+      "widgetType": "RICH_TEXT",
+      "requestApi": "NONE",
+      "_key_": "v1/99.etc/rich_text",
+      "id": "Fn7U3wmMm",
+      "layout": {
+        "h": 1,
+        "w": 44,
+        "x": 0,
+        "y": 5,
+        "i": "Fn7U3wmMm",
+        "moved": false,
+        "static": false
+      },
+      "option": {
+        "markdown": "# Messages"
+      }
+    },
+    {
+      "id": "pzJP4j_lfc",
+      "title": "Put",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 11,
+        "x": 11,
+        "y": 6,
+        "i": "pzJP4j_lfc",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_qmgr_interval_mqput_mqput1_total_count",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "9YZFb6OZvm",
+      "title": "Get",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 11,
+        "x": 22,
+        "y": 6,
+        "i": "9YZFb6OZvm",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_qmgr_interval_destructive_get_total_count",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "WyFQ6mZWzc",
+      "title": "Browse",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 11,
+        "x": 33,
+        "y": 6,
+        "i": "WyFQ6mZWzc",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_qmgr_persistent_message_browse_count",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr",
+          "mql": "INJECT timepast\nHEADER { \"browse$\":\"#\" }\nOIDSET { oid:$oid, okind:$okind, onode:$onode }\nCATEGORY {\"telegraf_ibmmq_qmgr_persistent_message_browse_count\":6h, \"telegraf_ibmmq_qmgr_persistent_message_browse_count{m5}\":3d, \"telegraf_ibmmq_qmgr_persistent_message_browse_count{h1}\":unlimit } \nTAGLOAD\nINJECT default\nUPDATE { key: ['gauge'], value: $TIME_MERGE_PLACE }\nSELECT [ 'pcode', 'time', 'oid', 'gauge', 'qmgr' ]\nFILTER { key: \"gauge\", exist: true }\nFILTER { key: \"qmgr\", exist: true }\nJOIN {pk:[qmgr], query:NONPERSIST, field:[ibmmq_qmgr_non_persistent_message_browse_count]}\nCREATE { key: browse, expr: \"gauge+ ibmmq_qmgr_non_persistent_message_browse_count\" }\nCREATE { key:_id_, expr: \"pcode+'_'+qmgr\" }\nCREATE { key:_name_, expr: \"qmgr\" }\nGROUP { timeunit: 5s, merge: ['browse'], pk: _id_, last: _name_ }\nUPDATE { key: ['browse'], value: $OBJECT_MERGE_PLACE }\n\n\nSUB NONPERSIST\nCATEGORY {\"ibmmq_qmgr_non_persistent_message_browse_count\":6h, \"ibmmq_qmgr_non_persistent_message_browse_count{m5}\":3d, \"ibmmq_qmgr_non_persistent_message_browse_count{h1}\":unlimit } \nTAGLOAD\nSELECT [ 'pcode', 'time', 'oid', 'gauge', 'qmgr' ]\nFILTER { key: \"gauge\", exist: true }\nFILTER { key: \"qmgr\", exist: true }\n\nRENAME {src:gauge, dst:ibmmq_qmgr_non_persistent_message_browse_count}\n\nEND"
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "KM3GNi2x3M",
+      "title": "Cpu",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 16,
+        "x": 0,
+        "y": 11,
+        "i": "KM3GNi2x3M",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "server_base",
+      "option": {
+        "metrics": 2,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "CpuCores",
+          "tags": [
+            {
+              "key": "cpu_cores",
+              "title": "CpuCores",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "cpu",
+              "title": "Cpu",
+              "unit": "pct",
+              "description": "Total CPU utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "HostIp",
+          "tags": [
+            {
+              "key": "host_ip",
+              "title": "HostIp",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "cpu",
+              "title": "Cpu",
+              "unit": "pct",
+              "description": "Total CPU utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Oname",
+          "tags": [
+            {
+              "key": "oname",
+              "title": "Oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "key": "cpu_usr",
+              "title": "CpuUsr",
+              "unit": "pct",
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "description": "CPU user utilization",
+              "visible": false
+            },
+            {
+              "key": "cpu_sys",
+              "title": "CpuSys",
+              "unit": "pct",
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "description": "CPU system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Os",
+          "tags": [
+            {
+              "key": "os",
+              "title": "Os",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "cpu",
+              "title": "Cpu",
+              "unit": "pct",
+              "description": "Total CPU utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "cpu",
+              "title": "Cpu",
+              "unit": "pct",
+              "description": "Total CPU utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "Qk-vhbkQfm",
+      "title": "Log write latency",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 14,
+        "x": 16,
+        "y": 11,
+        "i": "Qk-vhbkQfm",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_qmgr_log_write_latency_seconds",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "FY8qKfNVri",
+      "title": "File system",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 14,
+        "x": 30,
+        "y": 11,
+        "i": "FY8qKfNVri",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "server_disk",
+      "option": {
+        "metrics": 0,
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "MountPoint,에이전트 명",
+          "tags": [
+            {
+              "key": "mountPoint",
+              "title": "MountPoint",
+              "unit": "#"
+            },
+            {
+              "key": "oname",
+              "title": "Oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "DeviceIdHash",
+          "tags": [
+            {
+              "key": "deviceIdHash",
+              "title": "DeviceIdHash",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "FileSystem",
+          "tags": [
+            {
+              "key": "fileSystem",
+              "title": "FileSystem",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "FileSystemHash",
+          "tags": [
+            {
+              "key": "fileSystemHash",
+              "title": "FileSystemHash",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "MountPoint",
+          "tags": [
+            {
+              "key": "mountPoint",
+              "title": "MountPoint",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "MountPointHash",
+          "tags": [
+            {
+              "key": "mountPointHash",
+              "title": "MountPointHash",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Oname",
+          "tags": [
+            {
+              "key": "oname",
+              "title": "Oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "OS",
+          "tags": [
+            {
+              "key": "os",
+              "title": "OS",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "icon": "note",
+      "supports": [],
+      "title": "리치 텍스트",
+      "dirname": "v1/99.etc",
+      "widgetType": "RICH_TEXT",
+      "requestApi": "NONE",
+      "_key_": "v1/99.etc/rich_text",
+      "id": "aAIZ46jyk",
+      "layout": {
+        "h": 1,
+        "w": 44,
+        "x": 0,
+        "y": 10,
+        "i": "aAIZ46jyk",
+        "moved": false,
+        "static": false
+      },
+      "option": {
+        "markdown": "# Resources"
+      }
+    },
+    {
+      "icon": "note",
+      "supports": [],
+      "title": "리치 텍스트",
+      "dirname": "v1/99.etc",
+      "widgetType": "RICH_TEXT",
+      "requestApi": "NONE",
+      "_key_": "v1/99.etc/rich_text",
+      "id": "u4G4CKYuF",
+      "layout": {
+        "h": 1,
+        "w": 44,
+        "x": 0,
+        "y": 15,
+        "i": "u4G4CKYuF",
+        "moved": false,
+        "static": false
+      },
+      "option": {
+        "markdown": "# Subscriptions"
+      }
+    },
+    {
+      "id": "-T43tKXHMO",
+      "title": "ND Sub - low-water",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 16,
+        "x": 0,
+        "y": 16,
+        "i": "-T43tKXHMO",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_qmgr_non_durable_subscriber_low_water_mark",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "NVJhlpsFmc",
+      "title": "ND Sub - high-water",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 14,
+        "x": 16,
+        "y": 16,
+        "i": "NVJhlpsFmc",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_qmgr_non_durable_subscriber_high_water_mark",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "okmFmWR1iy",
+      "title": "ND MQSUB calls",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 14,
+        "x": 30,
+        "y": 16,
+        "i": "okmFmWR1iy",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_qmgr_create_non_durable_subscription_count",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "oname",
+          "tags": [
+            {
+              "key": "oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "platform",
+          "tags": [
+            {
+              "key": "platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "url",
+          "tags": [
+            {
+              "key": "url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "MO2Q2Rty_1",
+      "title": "Channel Status Squash",
+      "requestApi": "LAST",
+      "widgetType": "TABLE",
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "metrics": [
+        {
+          "mql": "HEADER { \"pname$\":\"#\",\"channel$\":\"#\",\"connname$\":\"#\",\"description$\":\"#\",\"jobname$\":\"#\",\"oname$\":\"#\",\"platform$\":\"#\",\"qmgr$\":\"#\",\"rqmname$\":\"#\",\"type$\":\"#\",\"url$\":\"#\",\"gauge$\":\"#\",\"oid$\":\"#\" , \"status$\":\"#\"}\nOIDSET { oid:$oid, okind:$okind, onode:$onode }\nCATEGORY \"telegraf_ibmmq_channel_status_squash\" \nTAGLOAD { backward: true }\nSELECT [\"pcode\",\"pname\",\"channel\",\"connname\",\"description\",\"jobname\",\"oname\",\"platform\",\"qmgr\",\"rqmname\",\"type\",\"url\",\"gauge\",\"oid\"]\nCREATE { key: status, expr: \"gauge ==0?'Stopped':(gauge ==1?'Transition':'Running')\" }\nCREATE { key: _id_, expr: \"oid+'_'+channel+'_'+connname+'_'+jobname\" } \nFIRST-ONLY { key: _id_ }\nORDER {key:gauge, sort: desc}\n"
+        }
+      ],
+      "layout": {
+        "h": 7,
+        "w": 44,
+        "x": 0,
+        "y": 20,
+        "i": "MO2Q2Rty_1",
+        "moved": false,
+        "static": false
+      },
+      "category": "telegraf_ibmmq_channel_status_squash",
+      "option": {
+        "sort": {
+          "status": false
+        },
+        "size": "sm",
+        "legend": {
+          "pname": {
+            "unit": "#",
+            "name": "Project",
+            "hide": true,
+            "order": -1
+          },
+          "channel": {
+            "unit": "#",
+            "hide": false,
+            "order": 1
+          },
+          "connname": {
+            "unit": "#",
+            "hide": false,
+            "order": 2
+          },
+          "description": {
+            "unit": "#",
+            "hide": true,
+            "order": -1
+          },
+          "jobname": {
+            "unit": "#",
+            "hide": false,
+            "order": 4
+          },
+          "oname": {
+            "unit": "#",
+            "hide": true,
+            "order": -1
+          },
+          "platform": {
+            "unit": "#",
+            "hide": true,
+            "order": -1
+          },
+          "qmgr": {
+            "unit": "#",
+            "hide": false,
+            "order": 0
+          },
+          "rqmname": {
+            "unit": "#",
+            "hide": true,
+            "order": -1
+          },
+          "type": {
+            "unit": "#",
+            "hide": false,
+            "order": 3
+          },
+          "url": {
+            "unit": "#",
+            "hide": true,
+            "order": -1
+          },
+          "gauge": {
+            "unit": "#",
+            "hide": true,
+            "order": -1
+          },
+          "oid": {
+            "unit": "#",
+            "hide": true,
+            "order": -1
+          },
+          "status": {
+            "unit": "#",
+            "hide": false,
+            "order": 5
+          }
+        },
+        "metrics": 0,
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        }
+      }
+    }
+  ],
+  "extra": {
+    "layout": {
+      "type": "FIXED",
+      "monitor": {
+        "x": 3,
+        "y": 3
+      }
+    },
+    "option": {}
+  }
+}
