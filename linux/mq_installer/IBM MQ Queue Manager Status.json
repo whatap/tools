@@ -1,0 +1,456 @@
+{
+  "name": "IBM MQ Queue Manager Status",
+  "widgets": [
+    {
+      "id": "5PDILNIbE",
+      "title": "FDC",
+      "requestApi": "LAST",
+      "widgetType": "TABLE",
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "metrics": [
+        {
+          "mql": "HEADER { \"pname$\":\"#\",\"oname$\":\"#\",\"platform$\":\"#\",\"qmgr$\":\"#\",\"url$\":\"#\",\"gauge$\":\"#\",\"oid$\":\"#\" }\nCATEGORY telegraf_ibmmq_qmgr_mq_fdc_file_count\nTAGLOAD { backward: true }\nSELECT [\"pcode\",\"pname\",\"oname\",\"platform\",\"qmgr\",\"url\",\"gauge\",\"oid\"]\nCREATE { key: _id_, expr: \"qmgr\" } \nFIRST-ONLY { key: _id_ }\n"
+        }
+      ],
+      "layout": {
+        "h": 5,
+        "w": 9,
+        "x": 9,
+        "y": 10,
+        "i": "5PDILNIbE",
+        "moved": false,
+        "static": false
+      },
+      "category": "telegraf_ibmmq_qmgr_exporter_publications",
+      "option": {
+        "sort": {
+          "oid": true
+        },
+        "size": "sm",
+        "legend": {
+          "pname": {
+            "unit": "#",
+            "name": "Project",
+            "hide": true,
+            "order": -1
+          },
+          "oname": {
+            "unit": "#",
+            "name": "Oname",
+            "hide": true,
+            "order": -1
+          },
+          "platform": {
+            "unit": "#",
+            "name": "Platform",
+            "hide": true,
+            "order": -1
+          },
+          "qmgr": {
+            "unit": "#",
+            "name": "Qmgr",
+            "hide": false,
+            "order": 0
+          },
+          "url": {
+            "unit": "#",
+            "name": "Url",
+            "hide": true,
+            "order": -1
+          },
+          "gauge": {
+            "unit": "#",
+            "name": "Gauge",
+            "hide": false,
+            "order": 1
+          },
+          "oid": {
+            "unit": "#",
+            "hide": true,
+            "order": -1
+          }
+        },
+        "metrics": 0,
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "8I9JJVgI1j",
+      "title": "Queue Manager Status",
+      "requestApi": "LAST",
+      "widgetType": "TABLE",
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "metrics": [
+        {
+          "mql": "HEADER { \"pname$\":\"#\",\"description$\":\"#\",\"oname$\":\"#\",\"platform$\":\"#\",\"qmgr$\":\"#\",\"url$\":\"#\",\"qmgr_status$\":\"#\",\"oid$\":\"#\",\"chinit_status$\":\"#\",\"cmdsvr_status$\":\"#\",\"uptime$\":\"#\",\"connections$\":\"#\",\"active_listener$\":\"#\" }\nCATEGORY telegraf_ibmmq_qmgr_status\nTAGLOAD { backward: true }\nSELECT [\"pcode\",\"pname\",\"description\",\"oname\",\"platform\",\"qmgr\",\"url\",\"gauge\",\"oid\"]\nCREATE { key: _id_, expr: \"qmgr\" } \nFIRST-ONLY { key: _id_ }\nRENAME {src:gauge, dst:qmgr_status_code}\nCREATE { key: qmgr_status, expr: \"(qmgr_status_code == 0)?'STOPPED':((qmgr_status_code == 1)?'STARTING':((qmgr_status_code == 2)?'RUNNING':((qmgr_status_code == 3)?'QUIESCING':((qmgr_status_code == 4)?'STANDBY':qmgr_status_code))))\" }\nJOIN {pk:[qmgr], query:CHINIT, field:[chinit_status]}\nJOIN {pk:[qmgr], query:CMDSVR, field:[cmdsvr_status]}\nJOIN {pk:[qmgr], query:UPTIME, field:[uptime]}\nJOIN {pk:[qmgr], query:CONNECTIONS, field:[connections]}\nJOIN {pk:[qmgr], query:ACTIVE_LISTENER, field:[active_listener]}\n\nSUB CHINIT \nCATEGORY telegraf_ibmmq_qmgr_channel_initiator_status\nTAGLOAD { backward: true }\nSELECT [\"pcode\",\"pname\",\"description\",\"oname\",\"platform\",\"qmgr\",\"url\",\"gauge\",\"oid\"]\nCREATE { key: _id_, expr: \"qmgr\" } \nFIRST-ONLY { key: _id_ }\nRENAME {src:gauge, dst:chinit_status_code}\nCREATE { key: chinit_status, expr: \"(chinit_status_code == 0)?'STOPPED':((chinit_status_code == 1)?'STARTING':((chinit_status_code == 2)?'RUNNING':((chinit_status_code == 3)?'QUIESCING':((chinit_status_code == 4)?'STANDBY':chinit_status_code))))\" }\nEND\n\nSUB CMDSVR \nCATEGORY telegraf_ibmmq_qmgr_command_server_status\nTAGLOAD { backward: true }\nSELECT [\"pcode\",\"pname\",\"description\",\"oname\",\"platform\",\"qmgr\",\"url\",\"gauge\",\"oid\"]\nCREATE { key: _id_, expr: \"qmgr\" } \nFIRST-ONLY { key: _id_ }\nRENAME {src:gauge, dst:cmdsvr_status_code}\nCREATE { key: cmdsvr_status, expr: \"(cmdsvr_status_code == 0)?'STOPPED':((cmdsvr_status_code == 1)?'STARTING':((cmdsvr_status_code == 2)?'RUNNING':((cmdsvr_status_code == 3)?'QUIESCING':((cmdsvr_status_code == 4)?'STANDBY':cmdsvr_status_code))))\" }\nEND\n\nSUB UPTIME \nCATEGORY telegraf_ibmmq_qmgr_uptime\nTAGLOAD { backward: true }\nSELECT [\"pcode\",\"pname\",\"description\",\"oname\",\"platform\",\"qmgr\",\"url\",\"gauge\",\"oid\"]\nCREATE { key: _id_, expr: \"qmgr\" } \nFIRST-ONLY { key: _id_ }\nCREATE { key:uptime, expr:\"int(gauge / (24*3600))+'일'+((gauge / 3600)%24)+'시간'\"}\nEND\n\nSUB CONNECTIONS \nCATEGORY telegraf_ibmmq_qmgr_connection_count\nTAGLOAD { backward: true }\nSELECT [\"pcode\",\"pname\",\"description\",\"oname\",\"platform\",\"qmgr\",\"url\",\"gauge\",\"oid\"]\nCREATE { key: _id_, expr: \"qmgr\" } \nFIRST-ONLY { key: _id_ }\nCREATE { key:connections, expr:\"gauge\"}\nEND\n\nSUB ACTIVE_LISTENER\nCATEGORY telegraf_ibmmq_qmgr_active_listeners\nTAGLOAD { backward: true }\nSELECT [\"pcode\",\"pname\",\"description\",\"oname\",\"platform\",\"qmgr\",\"url\",\"gauge\",\"oid\"]\nCREATE { key: _id_, expr: \"qmgr\" } \nFIRST-ONLY { key: _id_ }\nCREATE { key:active_listener, expr:\"gauge\"}\nEND\n\n"
+        }
+      ],
+      "layout": {
+        "i": "8I9JJVgI1j",
+        "w": 60,
+        "h": 5,
+        "x": 0,
+        "y": 0,
+        "moved": false,
+        "static": false
+      },
+      "category": "telegraf_ibmmq_qmgr_status",
+      "option": {
+        "sort": {
+          "oid": true
+        },
+        "size": "sm",
+        "legend": {
+          "pname": {
+            "unit": "#",
+            "name": "Project",
+            "order": -1,
+            "hide": true
+          },
+          "description": {
+            "unit": "#",
+            "name": "Description",
+            "order": -1,
+            "hide": true
+          },
+          "oname": {
+            "unit": "#",
+            "name": "Oname",
+            "order": -1,
+            "hide": true
+          },
+          "platform": {
+            "unit": "#",
+            "name": "Platform",
+            "order": -1,
+            "hide": true
+          },
+          "qmgr": {
+            "unit": "#",
+            "name": "Qmgr",
+            "order": 0,
+            "hide": false
+          },
+          "url": {
+            "unit": "#",
+            "name": "Url",
+            "order": -1,
+            "hide": true
+          },
+          "oid": {
+            "unit": "#",
+            "order": -1,
+            "hide": true
+          },
+          "qmgr_status": {
+            "unit": "#",
+            "name": "Qmgr",
+            "order": 1,
+            "hide": false
+          },
+          "chinit_status": {
+            "unit": "#",
+            "name": "Chn Init",
+            "order": 2,
+            "hide": false
+          },
+          "cmdsvr_status": {
+            "unit": "#",
+            "name": "Cmd Svr",
+            "order": 3,
+            "hide": false
+          },
+          "uptime": {
+            "unit": "#",
+            "name": "Uptime",
+            "order": 4,
+            "hide": false
+          },
+          "connections": {
+            "unit": "#",
+            "name": "Conns",
+            "order": 5,
+            "hide": false
+          },
+          "active_listener": {
+            "unit": "#",
+            "name": "Active LISTENER",
+            "order": 6,
+            "hide": false
+          }
+        },
+        "metrics": 0,
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "7K4cZBhpmi",
+      "title": "Connections Count",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 5,
+        "w": 60,
+        "x": 0,
+        "y": 5,
+        "i": "7K4cZBhpmi",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_qmgr_connection_count",
+      "option": {
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "Qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "title": "Qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "sum",
+              "timeMerge": "sum",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Oname",
+          "tags": [
+            {
+              "key": "oname",
+              "title": "Oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Platform",
+          "tags": [
+            {
+              "key": "platform",
+              "title": "Platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "title": "Qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Url",
+          "tags": [
+            {
+              "key": "url",
+              "title": "Url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
+      "id": "sjLkENxDkS",
+      "title": "Processed Publications",
+      "requestApi": "LAST",
+      "widgetType": "TABLE",
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "metrics": [
+        {
+          "mql": "HEADER { \"pname$\":\"#\",\"oname$\":\"#\",\"platform$\":\"#\",\"qmgr$\":\"#\",\"url$\":\"#\",\"gauge$\":\"#\",\"oid$\":\"#\" }\nCATEGORY telegraf_ibmmq_qmgr_exporter_publications \nTAGLOAD { backward: true }\nSELECT [\"pcode\",\"pname\",\"oname\",\"platform\",\"qmgr\",\"url\",\"gauge\",\"oid\"]\nCREATE { key: _id_, expr: \"qmgr\" } \nFIRST-ONLY { key: _id_ }\n"
+        }
+      ],
+      "layout": {
+        "h": 5,
+        "w": 9,
+        "x": 0,
+        "y": 10,
+        "i": "sjLkENxDkS",
+        "moved": false,
+        "static": false
+      },
+      "category": "telegraf_ibmmq_qmgr_exporter_publications",
+      "option": {
+        "sort": {
+          "oid": true
+        },
+        "size": "sm",
+        "legend": {
+          "pname": {
+            "unit": "#",
+            "name": "Project",
+            "hide": true,
+            "order": -1
+          },
+          "oname": {
+            "unit": "#",
+            "name": "Oname",
+            "hide": true,
+            "order": -1
+          },
+          "platform": {
+            "unit": "#",
+            "name": "Platform",
+            "hide": true,
+            "order": -1
+          },
+          "qmgr": {
+            "unit": "#",
+            "name": "Qmgr",
+            "hide": false,
+            "order": 0
+          },
+          "url": {
+            "unit": "#",
+            "name": "Url",
+            "hide": true,
+            "order": -1
+          },
+          "gauge": {
+            "unit": "#",
+            "name": "Gauge",
+            "hide": false,
+            "order": 1
+          },
+          "oid": {
+            "unit": "#",
+            "hide": true,
+            "order": -1
+          }
+        },
+        "metrics": 0,
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        }
+      }
+    }
+  ],
+  "extra": {
+    "layout": {
+      "type": "FIXED",
+      "monitor": {
+        "x": 3,
+        "y": 3
+      }
+    },
+    "option": {}
+  }
+}

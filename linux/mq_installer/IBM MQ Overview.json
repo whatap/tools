@@ -2,6 +2,230 @@
   "name": "IBM MQ Overview",
   "widgets": [
     {
+      "id": "eGfww5MLoK",
+      "title": "FileSystem - Bytes",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "h": 4,
+        "w": 11,
+        "x": 33,
+        "y": 11,
+        "i": "eGfww5MLoK",
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "server_disk",
+      "option": {
+        "metrics": 0,
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        },
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true
+      },
+      "metrics": [
+        {
+          "name": "MountPoint,에이전트 명",
+          "mql": "HEADER { \"usedBytes$\":\"byte\" }\n\nCATEGORY {\"telegraf_ibmmq_qmgr_queue_manager_file_system_in_use_bytes\":6h, \"telegraf_ibmmq_qmgr_queue_manager_file_system_in_use_bytes{m5}\":3d, \"telegraf_ibmmq_qmgr_queue_manager_file_system_in_use_bytes{h1}\":unlimit } \nTAGLOAD\nSELECT [ 'pcode', 'time', 'oid', 'gauge', 'qmgr', 'url' ]\nRENAME {src:gauge, dst:usedBytes}\nCREATE { key:_id_, expr: \"qmgr+'_'+url\" }\nCREATE { key:_name_, expr: \"qmgr\" }\n"
+        },
+        {
+          "name": "DeviceIdHash",
+          "tags": [
+            {
+              "key": "deviceIdHash",
+              "title": "DeviceIdHash",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "FileSystem",
+          "tags": [
+            {
+              "key": "fileSystem",
+              "title": "FileSystem",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "FileSystemHash",
+          "tags": [
+            {
+              "key": "fileSystemHash",
+              "title": "FileSystemHash",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "MountPoint",
+          "tags": [
+            {
+              "key": "mountPoint",
+              "title": "MountPoint",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "MountPointHash",
+          "tags": [
+            {
+              "key": "mountPointHash",
+              "title": "MountPointHash",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Oname",
+          "tags": [
+            {
+              "key": "oname",
+              "title": "Oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "OS",
+          "tags": [
+            {
+              "key": "os",
+              "title": "OS",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "usedPercent",
+              "title": "UsedPercent",
+              "unit": "pct",
+              "description": "File system utilization",
+              "visible": false
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    },
+    {
       "id": "82yHfMArM",
       "title": "PUT",
       "isMultiProject": true,
@@ -1436,7 +1660,7 @@
       ],
       "layout": {
         "h": 4,
-        "w": 16,
+        "w": 11,
         "x": 0,
         "y": 11,
         "i": "KM3GNi2x3M",
@@ -1502,35 +1726,7 @@
         },
         {
           "name": "Oname",
-          "tags": [
-            {
-              "key": "oname",
-              "title": "Oname",
-              "unit": "#"
-            }
-          ],
-          "fields": [
-            {
-              "key": "cpu_usr",
-              "title": "CpuUsr",
-              "unit": "pct",
-              "objectMerge": "avg",
-              "timeMerge": "avg",
-              "description": "CPU user utilization",
-              "visible": false
-            },
-            {
-              "key": "cpu_sys",
-              "title": "CpuSys",
-              "unit": "pct",
-              "objectMerge": "avg",
-              "timeMerge": "avg",
-              "description": "CPU system utilization",
-              "visible": false
-            }
-          ],
-          "mqlType": "automated",
-          "isSeriesMergable": true
+          "mql": "HEADER { \"cpu_usr$\":\"pct\", \"cpu_sys$\":\"pct\" }\nOIDSET { oid:$oid, okind:$okind, onode:$onode }\nCATEGORY {\"telegraf_ibmmq_qmgr_system_cpu_time_percentage\":6h, \"telegraf_ibmmq_qmgr_system_cpu_time_percentage{m5}\":3d, \"telegraf_ibmmq_qmgr_system_cpu_time_percentage{h1}\":unlimit } \nTAGLOAD\n\nSELECT [ 'pcode', 'time', 'oid', 'gauge', 'qmgr', 'url' ]\nFILTER { key: \"qmgr\", exist: true }\nFILTER { key: \"gauge\", exist: true }\nRENAME {src:gauge, dst:cpu_sys}\nJOIN {pk:[qmgr, url], query:CPU_USER_QUERY, field:[cpu_usr]}\nCREATE { key:_id_, expr: \"url+'_'+qmgr\" }\nCREATE { key:_name_, expr: \"qmgr\" }\n\n\nSUB CPU_USER_QUERY\nOIDSET { oid:$oid, okind:$okind, onode:$onode }\nCATEGORY {\"telegraf_ibmmq_qmgr_user_cpu_time_percentage\":6h, \"telegraf_ibmmq_qmgr_user_cpu_time_percentage{m5}\":3d, \"telegraf_ibmmq_qmgr_user_cpu_time_percentage{h1}\":unlimit } \nTAGLOAD\nSELECT [ 'pcode', 'time', 'oid', 'gauge', 'qmgr', 'url' ]\nFILTER { key: \"qmgr\", exist: true }\nFILTER { key: \"gauge\", exist: true }\nRENAME {src:gauge, dst:cpu_usr}\nCREATE { key:_id_, expr: \"url+'_'+qmgr\" }\nCREATE { key:_name_, expr: \"qmgr\" }\n\nEND"
         },
         {
           "name": "Os",
@@ -1591,8 +1787,8 @@
       ],
       "layout": {
         "h": 4,
-        "w": 14,
-        "x": 16,
+        "w": 11,
+        "x": 11,
         "y": 11,
         "i": "Qk-vhbkQfm",
         "moved": false,
@@ -1733,7 +1929,7 @@
     },
     {
       "id": "FY8qKfNVri",
-      "title": "File system",
+      "title": "FileSystem %",
       "isMultiProject": true,
       "supports": [
         {
@@ -1742,8 +1938,8 @@
       ],
       "layout": {
         "h": 4,
-        "w": 14,
-        "x": 30,
+        "w": 11,
+        "x": 22,
         "y": 11,
         "i": "FY8qKfNVri",
         "moved": false,
@@ -1767,31 +1963,7 @@
       "metrics": [
         {
           "name": "MountPoint,에이전트 명",
-          "tags": [
-            {
-              "key": "mountPoint",
-              "title": "MountPoint",
-              "unit": "#"
-            },
-            {
-              "key": "oname",
-              "title": "Oname",
-              "unit": "#"
-            }
-          ],
-          "fields": [
-            {
-              "objectMerge": "avg",
-              "timeMerge": "avg",
-              "key": "usedPercent",
-              "title": "UsedPercent",
-              "unit": "pct",
-              "description": "File system utilization",
-              "visible": false
-            }
-          ],
-          "mqlType": "automated",
-          "isSeriesMergable": true
+          "mql": "HEADER { \"usedPercent$\":\"pct\" }\nOIDSET { oid:$oid, okind:$okind, onode:$onode }\nCATEGORY {\"telegraf_ibmmq_qmgr_mq_errors_file_system_free_space_percentage\":6h, \"telegraf_ibmmq_qmgr_mq_errors_file_system_free_space_percentage{m5}\":3d, \"telegraf_ibmmq_qmgr_mq_errors_file_system_free_space_percentage{h1}\":unlimit } \nTAGLOAD\nSELECT [ 'pcode', 'time', 'oid', 'gauge', 'url', 'qmgr' ]\nCREATE { key: usedPercent, expr: \"100 - gauge\" }\nCREATE { key:_id_, expr: \"qmgr+'_'+url\" }\nCREATE { key:_name_, expr: \"qmgr\" }\n"
         },
         {
           "name": "DeviceIdHash",
