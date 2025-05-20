@@ -1,0 +1,181 @@
+{
+  "name": "IBM MQ Topic Status",
+  "widgets": [
+    {
+      "id": "pSpDklgEhf",
+      "title": "Total Publications",
+      "isMultiProject": true,
+      "supports": [
+        {
+          "platform": "INFRA"
+        }
+      ],
+      "layout": {
+        "i": "pSpDklgEhf",
+        "w": 43,
+        "h": 14,
+        "x": 0,
+        "y": 0,
+        "moved": false,
+        "static": false
+      },
+      "requestApi": "SERIES",
+      "widgetType": "SERIES",
+      "icon": "line-chart",
+      "category": "telegraf_ibmmq_qmgr_topic_mqput_mqput1_interval_total",
+      "option": {
+        "metrics": 0,
+        "chart": "TON_LINE",
+        "showPlotMaxValue": true,
+        "showLegend": true,
+        "panel": {
+          "header": {
+            "display": ""
+          }
+        }
+      },
+      "metrics": [
+        {
+          "name": "Qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "title": "Qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "sum",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Oname",
+          "tags": [
+            {
+              "key": "oname",
+              "title": "Oname",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Platform",
+          "tags": [
+            {
+              "key": "platform",
+              "title": "Platform",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Project",
+          "tags": [
+            {
+              "key": "pname",
+              "title": "Project",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Qmgr",
+          "tags": [
+            {
+              "key": "qmgr",
+              "title": "Qmgr",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        },
+        {
+          "name": "Url",
+          "tags": [
+            {
+              "key": "url",
+              "title": "Url",
+              "unit": "#"
+            }
+          ],
+          "fields": [
+            {
+              "objectMerge": "avg",
+              "timeMerge": "avg",
+              "key": "gauge",
+              "title": "Gauge",
+              "unit": "#"
+            }
+          ],
+          "mqlType": "automated",
+          "isSeriesMergable": true
+        }
+      ]
+    }
+  ],
+  "extra": {
+    "layout": {
+      "type": "FIXED",
+      "monitor": {
+        "x": 3,
+        "y": 3
+      }
+    },
+    "option": {
+      "stime": 1747718078000,
+      "etime": 1747718678000,
+      "timeAction": "LIVE_10MIN"
+    }
+  }
+}
