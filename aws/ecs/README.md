@@ -20,8 +20,8 @@
 
 1. **리포지토리 클론**:
 ```bash
-git clone https://github.com/yourusername/whatap-ecs-management.git
-cd whatap-ecs-management
+git clone https://github.com/whatap/tools.git
+cd tools/aws/ecs
 ```
 2. **프로그램 빌드**::
 ```bash
