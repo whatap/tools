@@ -18,17 +18,22 @@
 
 ## 사용법
 
-1. **리포지토리 클론**:
+0.1. **리포지토리 클론**(옵션):
 ```bash
 git clone https://github.com/whatap/tools.git
 cd tools/aws/ecs
 ```
-2. **프로그램 빌드**::
+0.2. **프로그램 빌드**(옵션):
 ```bash
 go build -o whatap_ecs ./whatap_ecs.go
 ```
-
-3. **프로그램 실행**:
+1. **실행파일 다운로드**:
+aws cloud console에서 아래 명령으로 이미 컴파일되어 있는 whatap_ecs를 다운로드 하고 실행할 수 있도록 권한을 부여합니다.
+```bash
+wget https://github.com/whatap/tools/releases/download/1.0/whatap_ecs
+chmod +x whatap_ecs
+```   
+2. **프로그램 실행**:
 ```bash
 ./whatap_ecs
 ```
